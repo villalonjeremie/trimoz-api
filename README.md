@@ -14,6 +14,14 @@ git init
 git clone https://github.com/villalonjeremie/trimoz.git
 ```
 
+Install the project dependencies and start the PHP server:
+
+```
+composer install
+cd public
+php -S 127.0.0.1:8000
+```
+
 ## Help
 
-You can also email villalon.jeremie@gmail.com .
+You can email villalon.jeremie@gmail.com.
