@@ -5,6 +5,7 @@ class CaseEntityCollection {
     private $tabCasesEntity;
     private $arrayCasesRequest;
     private $caseEntityFactory;
+    private $arrayError;
 
     public function __construct(array $arrayCasesRequest = [], CaseEntityFactory $caseEntityFactory)
     {
@@ -16,11 +17,11 @@ class CaseEntityCollection {
     {
         foreach ($this->arrayCasesRequest as $case){
             $caseEntityFormatted = $this->caseEntityFactory->getCaseEntity($case)->format();
+            if (!empty($caseEntityFormatted->getError())) {
+                $this->arrayError[] = $caseEntityFormatted->getError();
+            }
             $this->setCaseEntity($caseEntityFormatted);
         }
-
-        die(var_dump($this->getTabStates()));
-        //build Collection from array Cases state
     }
 
     public function getCount(){
@@ -45,5 +46,13 @@ class CaseEntityCollection {
         if (isset($this->tabCaseEntity[$index])) {
             unset($this->tabCasesEntity[$index]);
         }
+    }
+
+    public function getCountError() {
+        return count($this->arrayError);
+    }
+
+    public function getErrors() {
+        return $this->arrayError;
     }
 }

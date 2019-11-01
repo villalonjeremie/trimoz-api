@@ -8,18 +8,20 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 $requestMethod = $_SERVER['REQUEST_METHOD'];
-$arrayQueryRequest = explode("&", $_SERVER['QUERY_STRING']);
+$responseApi = getResponseApi();
 
-if (empty($arrayQueryRequest)) {
-    header("HTTP/1.1 422 Unprocessable Entity");
-    exit();
+if(isset($_SERVER['QUERY_STRING'])) {
+    $arrayQueryRequest = explode("&", $_SERVER['QUERY_STRING']);
+} else {
+    $responseApi->response(422, 'Query empty', true);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    $controller = new PermutationController(getCaseEntityCollection($arrayQueryRequest, getCaseEntityFactory()), getToolBoxPermutation());
-
-    json_encode($controller);
-
+    $controller = new PermutationController(
+        getCaseEntityCollection($arrayQueryRequest, getCaseEntityFactory()),
+        getToolBoxPermutation(),
+        $responseApi
+    );
 
     $controller->actionGet();
 }

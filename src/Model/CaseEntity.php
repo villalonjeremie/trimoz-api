@@ -33,15 +33,13 @@ class CaseEntity {
     }
 
     private function checkValid($splitParam){
-        if (!preg_match('/[\.xo]/', $splitParam[1])) {
+        if (!preg_match('/[\.xo]/', $splitParam[1]) || !preg_match('/states\[\d\]/', $splitParam[0])) {
             $this->setErrorInit();
             $this->setErrorMessage("Invalid request value : must be \"o\" or \".\" or \"x\"");
-
-            if(!preg_match('/states\[\d\]/', $splitParam[0])) {
-                $this->setErrorMessage("Invalid request : must be states['integer']");
-            }
+            $this->setErrorMessage("Invalid request : must be states['integer']");
             return false;
         }
+
         return true;
     }
 

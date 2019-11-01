@@ -1,10 +1,12 @@
 <?php
 use Trimoz\Model\CaseEntityCollection;
 use Trimoz\Model\CaseEntityFactory;
-use Trimoz\Permutation\ToolBoxPermutation;
+use Trimoz\Permutation\Library\ToolBoxPermutation;
+use Trimoz\Permutation\Library\ResponseApi;
 
 global $caseEntityFactory;
 global $toolBoxPermutation;
+global $responseApi;
 
 function getCaseEntityFactory() {
     //make this function as singleton
@@ -24,4 +26,12 @@ function getToolBoxPermutation() {
         return new ToolBoxPermutation;
     }
     return $toolBoxPermutation;
+}
+
+function getResponseApi() {
+    //make this function as singleton
+    if (empty($responseApi)) {
+        return new ResponseApi;
+    }
+    return $responseApi;
 }
