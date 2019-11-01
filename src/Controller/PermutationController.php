@@ -1,45 +1,32 @@
 <?php
-namespace Src\Controller;
+namespace Trimoz\Controller;
 
 class PermutationController {
 
-    private $permutation;
-    private $requestMethod;
+    private $caseEntityCollection;
 
-    public function __construct($requestMethod, $states, $permutation)
+    public function __construct(CaseEntityCollection $caseEntityCollection)
     {
-        $this->requestMethod = $requestMethod;
-        $this->permutation = $permutation;
+        $this->caseEntityCollection = $caseEntityCollection;
     }
 
-    public function processRequest()
+    public function actionGet()
     {
-        switch ($this->requestMethod) {
-            case 'GET':
-                $response = $this->getPermutations();
-                break;
-            default:
-                $response = $this->notFoundResponse();
-                break;
-        }
-        header($response['status_code_header']);
+        $result = $this->permutation->getResults();
+        $response['body'] = json_encode($result);
+        $this->setHeader('HTTP/1.1 200 OK');
         if ($response['body']) {
             echo $response['body'];
         }
     }
 
-    private function getPermutations()
+    public function notFoundResponse()
     {
-        $result = $this->permutation->getResults();
-        $response['status_code_header'] = 'HTTP/1.1 200 OK';
-        $response['body'] = json_encode($result);
-        return $response;
+        $this->setHeader('HTTP/1.1 404 Not Found');
+        exit;
     }
 
-    private function notFoundResponse()
-    {
-        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
-        $response['body'] = null;
-        return $response;
+    private function setHeader(string $message) {
+        header($message);
     }
 }
