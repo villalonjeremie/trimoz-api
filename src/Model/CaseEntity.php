@@ -4,10 +4,12 @@ namespace Trimoz\Model;
 class CaseEntity {
 
     private $state;
+    private $caseString;
+    private $error;
 
-    public function __construct(string $state)
+    public function __construct(string $caseString)
     {
-        $this->state = $state;
+        $this->caseString = $caseString;
     }
 
 
@@ -22,11 +24,27 @@ class CaseEntity {
         $this->state = $state;
     }
 
-//    //parse uri;
-//foreach (explode("&", $_SERVER['QUERY_STRING']) as $tmp_arr_param) {
-//$split_param = explode("=", $tmp_arr_param);
-//if (strpos( $split_param[0] , 'states[') !== false &&
-//in_array($split_param[1],['.','x','o']))
-//$args[(int)substr($split_param[0], -2,-1)]= $split_param[1];
-//}
+    public function format(){
+        $splitParam = explode("=", $this->caseString);
+
+        if($this->checkValid($splitParam)) {
+            $this->setState($splitParam[1]);
+        }
+    }
+
+    private function checkValid($splitParam){
+        if (preg_match('/states\[\d\]/', $splitParam[0])) {
+            $this->setError("Invalid request : must be states['integer']");
+            return false;
+        } elseif(preg_match('\"[\.xo]\"', $splitParam[1])) {
+            $this->setError("Invalid request value : must be \"o\" or \".\" or \"x\"");
+            return false;
+        }
+        return true;
+    }
+
+    private function setError(string $message) {
+        $this->error['message'] = $message;
+        $this->error['object'] = get_class($this);
+    }
 }

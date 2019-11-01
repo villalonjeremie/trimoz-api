@@ -10,15 +10,17 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 $requestMethod = $_SERVER['REQUEST_METHOD'];
 $arrayQueryRequest = explode("&", $_SERVER['QUERY_STRING']);
 
-if (empty($queryRequest)) {
+if (empty($arrayQueryRequest)) {
     header("HTTP/1.1 422 Unprocessable Entity");
     exit();
 }
 
-//die(getCaseEntityFactory());
-
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $controller = new PermutationController(getCaseEntityCollection($arrayQueryRequest, getCaseEntityFactory()), getToolBoxPermutation());
+
+    json_encode($controller);
+
+
     $controller->actionGet();
 }
 

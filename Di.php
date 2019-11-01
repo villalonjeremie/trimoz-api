@@ -15,7 +15,7 @@ function getCaseEntityFactory() {
 }
 
 function getCaseEntityCollection($arrayQuery, $caseEntityFactory) {
-     return new CaseEntityCollection($arrayQuery, $caseEntityFactory);
+      return new CaseEntityCollection($arrayQuery, $caseEntityFactory);
 }
 
 function getToolBoxPermutation() {

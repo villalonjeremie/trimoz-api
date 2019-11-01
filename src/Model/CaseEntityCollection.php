@@ -15,7 +15,8 @@ class CaseEntityCollection {
     public function builderCollection()
     {
         foreach ($this->arrayCasesRequest as $case){
-            $this->setCaseEntity(caseEntityFactory::getCaseEntity($case));
+            $caseEntityFormatted = $this->caseEntityFactory->getCaseEntity($case)->format();
+            $this->setCaseEntity($caseEntityFormatted);
         }
         //build Collection from array Cases state
     }

@@ -16,6 +16,7 @@ class PermutationController {
 
     public function actionGet()
     {
+        $this->caseEntityCollection->builderCollection();
         $arrayCases = $this->toolBoxPermutation->getPermutations($this->caseEntityCollection->getTabStates());
         $response['body'] = json_encode($arrayCases);
         $this->setHeader('HTTP/1.1 200 OK');
