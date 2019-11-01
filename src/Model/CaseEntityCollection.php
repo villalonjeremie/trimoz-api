@@ -18,6 +18,8 @@ class CaseEntityCollection {
             $caseEntityFormatted = $this->caseEntityFactory->getCaseEntity($case)->format();
             $this->setCaseEntity($caseEntityFormatted);
         }
+
+        die(var_dump($this->getTabStates()));
         //build Collection from array Cases state
     }
 

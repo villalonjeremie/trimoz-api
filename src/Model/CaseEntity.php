@@ -12,12 +12,10 @@ class CaseEntity {
         $this->caseString = $caseString;
     }
 
-
     public function getState()
     {
         return $this->state;
     }
-
 
     public function setState(string $state)
     {
@@ -30,21 +28,36 @@ class CaseEntity {
         if($this->checkValid($splitParam)) {
             $this->setState($splitParam[1]);
         }
+
+        return $this;
     }
 
     private function checkValid($splitParam){
-        if (preg_match('/states\[\d\]/', $splitParam[0])) {
-            $this->setError("Invalid request : must be states['integer']");
-            return false;
-        } elseif(preg_match('\"[\.xo]\"', $splitParam[1])) {
-            $this->setError("Invalid request value : must be \"o\" or \".\" or \"x\"");
+        if (!preg_match('/[\.xo]/', $splitParam[1])) {
+            $this->setErrorInit();
+            $this->setErrorMessage("Invalid request value : must be \"o\" or \".\" or \"x\"");
+
+            if(!preg_match('/states\[\d\]/', $splitParam[0])) {
+                $this->setErrorMessage("Invalid request : must be states['integer']");
+            }
             return false;
         }
         return true;
     }
 
-    private function setError(string $message) {
-        $this->error['message'] = $message;
-        $this->error['object'] = get_class($this);
+    private function setErrorInit() {
+        $error = [
+            "object" => get_class($this),
+            "message" => [],
+        ];
+        $this->error = $error;
+    }
+
+    private function setErrorMessage($message) {
+        $this->error["message"][] = $message;
+    }
+
+    public function getError() {
+        return $this->error;
     }
 }
