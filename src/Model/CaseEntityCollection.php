@@ -2,38 +2,45 @@
 namespace Trimoz\Model;
 
 class CaseEntityCollection {
-    private $tabCaseEntity;
+    private $tabCasesEntity;
+    private $arrayCasesRequest;
+    private $caseEntityFactory;
 
-    public function __construct(array $tabCaseEntity = [])
+    public function __construct(array $arrayCasesRequest = [], CaseEntityFactory $caseEntityFactory)
     {
-        $this->tabCaseEntity = $tabCaseEntity;
+        $this->arrayCasesRequest = $arrayCasesRequest;
+        $this->caseEntityFactory = $caseEntityFactory;
     }
 
-    public function checkValid(array $tabError = []){
-
+    public function builderCollection()
+    {
+        foreach ($this->arrayCasesRequest as $case){
+            $this->setCaseEntity(caseEntityFactory::getCaseEntity($case));
+        }
+        //build Collection from array Cases state
     }
 
     public function getCount(){
-        return count($this->tabCaseEntity);
+        return count($this->tabCasesEntity);
     }
 
     public function getCaseEntity(int $index){
         if (isset($this->tabCaseEntity[$index])){
-            return $this->tabCaseEntity[$index];
+            return $this->tabCasesEntity[$index];
         }
     }
 
-    public function getTabState() {
-        return $this->tabCaseEntity;
+    public function getTabStates() {
+        return $this->tabCasesEntity;
     }
 
     public function setCaseEntity(CaseEntity $caseEntity) {
-        $this->tabCaseEntity[] = $caseEntity;
+        $this->tabCasesEntity[] = $caseEntity;
     }
 
     public function removeCaseEntity(int $index) {
         if (isset($this->tabCaseEntity[$index])) {
-            unset($this->tabCaseEntity[$index]);
+            unset($this->tabCasesEntity[$index]);
         }
     }
 }

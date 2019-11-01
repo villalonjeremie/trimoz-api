@@ -1,19 +1,23 @@
 <?php
 namespace Trimoz\Controller;
 
+use Trimoz\Model\CaseEntityCollection;
+use Trimoz\Permutation\ToolBoxPermutation;
+
 class PermutationController {
-
     private $caseEntityCollection;
+    private $toolBoxPermutation;
 
-    public function __construct(CaseEntityCollection $caseEntityCollection)
+    public function __construct(CaseEntityCollection $caseEntityCollection, ToolBoxPermutation $toolBoxPermutation)
     {
         $this->caseEntityCollection = $caseEntityCollection;
+        $this->toolBoxPermutation = $toolBoxPermutation;
     }
 
     public function actionGet()
     {
-        $result = $this->permutation->getResults();
-        $response['body'] = json_encode($result);
+        $arrayCases = $this->toolBoxPermutation->getPermutations($this->caseEntityCollection->getTabStates());
+        $response['body'] = json_encode($arrayCases);
         $this->setHeader('HTTP/1.1 200 OK');
         if ($response['body']) {
             echo $response['body'];
