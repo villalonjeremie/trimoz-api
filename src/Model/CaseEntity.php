@@ -26,6 +26,7 @@ class CaseEntity {
         $splitParam = explode("=", $this->caseString);
 
         if($this->checkValid($splitParam)) {
+
             $this->setState($splitParam[1]);
         }
 

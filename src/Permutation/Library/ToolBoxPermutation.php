@@ -7,7 +7,6 @@ class ToolBoxPermutation {
 
     public function getPermutations(array $arrayCases, ClientConnection $redisClientConnection)
     {
-
         $redis = $redisClientConnection->getConnection();
         $key = json_encode($arrayCases);
 
@@ -20,7 +19,8 @@ class ToolBoxPermutation {
         }
     }
 
-    private function algoPermutation($arrayCases) {
+    private function algoPermutation($arrayCases)
+    {
 
         $count = count($arrayCases);
         $stack1 = [];

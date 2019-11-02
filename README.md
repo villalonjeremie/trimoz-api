@@ -46,6 +46,11 @@ SERVER_REDIS_IP="127.0.0.1"
 SERVER_PORT_REDIS="6379"
 ```
 
+Test API Call 
+```
+php vendor/bin/phpunit src/Permutation/Tests/PermutationControllerTest.php
+```
+
 ## Help
 
 You can email villalon.jeremie@gmail.com.

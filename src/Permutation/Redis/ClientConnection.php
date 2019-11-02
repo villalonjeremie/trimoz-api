@@ -9,12 +9,11 @@ class ClientConnection {
 
     public function __construct()
     {
-        $scheme = getEnv('SCHEME_REDIS') ?? 'tcp';
         $host = getenv('SERVER_REDIS_IP') ?? '127.0.0.1';
         $port = getenv('SERVER_PORT_REDIS') ?? '6379';
 
         try {
-            $this->clientConnection = new Predis\Client('127.0.0.1:6379');
+            $this->clientConnection = new Predis\Client($host.':'.$port);
             $this->clientConnection->connect();
 
             if (!$this->clientConnection->isConnected()){

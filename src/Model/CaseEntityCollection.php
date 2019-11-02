@@ -16,7 +16,7 @@ class CaseEntityCollection {
     public function builderCollection()
     {
         foreach ($this->arrayCasesRequest as $case){
-            $caseEntityFormatted = $this->caseEntityFactory->getCaseEntity($case)->format();
+            $caseEntityFormatted = $this->caseEntityFactory->getCaseEntity(urldecode($case))->format();
             if (!empty($caseEntityFormatted->getError())) {
                 $this->arrayError[] = $caseEntityFormatted->getError();
             }

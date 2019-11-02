@@ -12,7 +12,10 @@ class PermutationController {
     private $responseApi;
     private $redisClientConnection;
 
-    public function __construct(CaseEntityCollection $caseEntityCollection, ToolBoxPermutation $toolBoxPermutation, ClientConnection $redisClientConnection, ResponseApi $responseApi)
+    public function __construct(CaseEntityCollection $caseEntityCollection,
+                                ToolBoxPermutation $toolBoxPermutation,
+                                ClientConnection $redisClientConnection,
+                                ResponseApi $responseApi)
     {
         $this->caseEntityCollection = $caseEntityCollection;
         $this->toolBoxPermutation = $toolBoxPermutation;
