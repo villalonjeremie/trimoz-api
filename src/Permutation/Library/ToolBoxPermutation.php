@@ -1,11 +1,27 @@
 <?php
 namespace Trimoz\Permutation\Library;
 
-use Predis\Profile\Factory;
+use Trimoz\Permutation\Redis\ClientConnection;
 
 class ToolBoxPermutation {
 
-    public function getPermutations(array $arrayCases) {
+    public function getPermutations(array $arrayCases, ClientConnection $redisClientConnection)
+    {
+
+        $redis = $redisClientConnection->getConnection();
+        $key = json_encode($arrayCases);
+
+        if ($redis->exists($key)) {
+            return json_decode($redis->get($key));
+        } else {
+            $resultPermutation = $this->algoPermutation($arrayCases);
+            $redis->set($key, json_encode($resultPermutation));
+            return $resultPermutation;
+        }
+    }
+
+    private function algoPermutation($arrayCases) {
+
         $count = count($arrayCases);
         $stack1 = [];
         $stack2 = [];

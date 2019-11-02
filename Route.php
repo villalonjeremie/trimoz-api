@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $controller = new PermutationController(
         getCaseEntityCollection($arrayQueryRequest, getCaseEntityFactory()),
         getToolBoxPermutation(),
+        getClientRedisConnection(),
         $responseApi
     );
 

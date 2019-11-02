@@ -3,10 +3,12 @@ use Trimoz\Model\CaseEntityCollection;
 use Trimoz\Model\CaseEntityFactory;
 use Trimoz\Permutation\Library\ToolBoxPermutation;
 use Trimoz\Permutation\Library\ResponseApi;
+use Trimoz\Permutation\Redis\ClientConnection;
 
 global $caseEntityFactory;
 global $toolBoxPermutation;
 global $responseApi;
+global $clientRedisConnection;
 
 function getCaseEntityFactory() {
     //make this function as singleton
@@ -34,4 +36,12 @@ function getResponseApi() {
         return new ResponseApi;
     }
     return $responseApi;
+}
+
+function getClientRedisConnection() {
+    //make this function as singleton
+    if (empty($clientRedisConnection)) {
+        return new ClientConnection;
+    }
+    return $clientRedisConnection;
 }

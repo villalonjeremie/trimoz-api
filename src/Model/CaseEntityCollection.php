@@ -25,8 +25,6 @@ class CaseEntityCollection {
     }
 
     public function getCount(){
-
-        die(json_encode($this->tabCasesEntity));
         return count($this->tabCasesEntity);
     }
 
