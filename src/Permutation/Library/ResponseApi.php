@@ -67,15 +67,12 @@ class ResponseApi
         511 => 'Network Authentication Required',
     ];
 
-    public function response(int $code = null, $message = null, $exit=false) {
+    public function response(int $code = null, $message = null) {
         $statusText = self::$statusCodes[$code] ?? 'Unknown';
         $header = 'HTTP/1.1 '.strval($code).' '.$statusText;
         header($header);
 
-        if(!$exit) {
-            echo json_encode($message);
-        } else {
-            exit;
-        }
+        echo json_encode($message);
+        exit;
     }
 }

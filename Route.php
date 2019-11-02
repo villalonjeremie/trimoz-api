@@ -13,7 +13,7 @@ $responseApi = getResponseApi();
 if(isset($_SERVER['QUERY_STRING'])) {
     $arrayQueryRequest = explode("&", $_SERVER['QUERY_STRING']);
 } else {
-    $responseApi->response(422, 'Query empty', true);
+    $responseApi->response(422, 'Query empty');
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
