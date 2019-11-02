@@ -1,1 +1,26 @@
-HTML with AngularJS code
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="index.js"></script>
+<body ng-app="multiCases" ng-controller="multiCasesCtrl">
+
+<div >
+    <span>Demande</span>
+    <input ng-keydown="changeNumberCase()" ng-model="numberCase">
+    <section ng-repeat="user in users">
+        <!--<span class="serial-number">{{ $index + 1 }}.</span>-->
+        <!--<input ng-model="user.firstName" class="users-container-inputs-text" type="text" placeholder="First Name" />-->
+        <!--<input ng-model="user.lastName" class="users-container-inputs-text" type="text" placeholder="Last Name" />-->
+        <!--<input ng-model="user.address" class="users-container-inputs-text" type="text" placeholder="Address" />-->
+        <!--<a class="users-container-inputs-button" ng-click="removeUser(user)">X</a>-->
+    </section>
+
+
+    <form>
+
+    </form>
+
+</div>
+
+</body>
+</html>
