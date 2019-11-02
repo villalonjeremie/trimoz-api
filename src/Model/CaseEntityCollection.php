@@ -25,6 +25,8 @@ class CaseEntityCollection {
     }
 
     public function getCount(){
+
+        die(json_encode($this->tabCasesEntity));
         return count($this->tabCasesEntity);
     }
 
@@ -39,7 +41,8 @@ class CaseEntityCollection {
     }
 
     public function setCaseEntity(CaseEntity $caseEntity) {
-        $this->tabCasesEntity[] = $caseEntity;
+
+        $this->tabCasesEntity[] = $caseEntity->getState();
     }
 
     public function removeCaseEntity(int $index) {
@@ -49,6 +52,9 @@ class CaseEntityCollection {
     }
 
     public function getCountError() {
+        if (empty($this->arrayError)) {
+            return 0;
+        }
         return count($this->arrayError);
     }
 
