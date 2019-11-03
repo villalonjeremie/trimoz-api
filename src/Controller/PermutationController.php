@@ -12,6 +12,8 @@ class PermutationController {
     private $responseApi;
     private $redisClientConnection;
 
+    const MAX_CASES = 5;
+
     public function __construct(CaseEntityCollection $caseEntityCollection,
                                 ToolBoxPermutation $toolBoxPermutation,
                                 ClientConnection $redisClientConnection,
@@ -27,7 +29,7 @@ class PermutationController {
     {
         $this->caseEntityCollection->builderCollection();
 
-        if ($this->caseEntityCollection->getCountError() > 0) {
+        if ($this->caseEntityCollection->getCountError() > 0 || $this->caseEntityCollection->getCount() > self::MAX_CASES) {
             $this->responseApi->response(404, $this->caseEntityCollection->getErrors());
         }
 
