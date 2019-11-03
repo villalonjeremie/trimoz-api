@@ -43,12 +43,6 @@ class CaseEntityCollection {
         $this->tabCasesEntity[] = $caseEntity->getState();
     }
 
-    public function removeCaseEntity(int $index) {
-        if (isset($this->tabCaseEntity[$index])) {
-            unset($this->tabCasesEntity[$index]);
-        }
-    }
-
     public function getCountError() {
         if (empty($this->arrayError)) {
             return 0;

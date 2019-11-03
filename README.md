@@ -51,6 +51,11 @@ Test API Call
 php vendor/bin/phpunit src/Permutation/Tests/PermutationControllerTest.php
 ```
 
+Loading page on browser in local
+```
+http://localhost/public/index.html
+```
+
 ## Help
 
 You can email villalon.jeremie@gmail.com.

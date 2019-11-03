@@ -2,27 +2,38 @@
 <html>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="index.js"></script>
-<body ng-app="multiCases" ng-controller="multiCasesCtrl">
+<link rel="stylesheet" href="style.css">
 
-<div class="demande" >
-    <h3>Demande</h3>
-    <div class="cases">
-        <h4>Cases</h4>
-        <input ng-change="changeNumberCase()" ng-model="numberCases" placeholder="Enter number of cases">
-    </div>
-    <div class="states">
-        <h4>Etats</h4>
-        <div ng-repeat="case in cases">
-            <input class="case-{{$index}}" type="text" placeholder="Enter x,o or ." />
+<body ng-app="multiCases" ng-controller="multiCasesCtrl">
+    <div id="wrapper">
+        <div id="column-left">
+            <div class="demande" >
+                <h3>Demande</h3>
+                <div class="cases">
+                    <h4>Cases</h4>
+                    <input ng-change="changeNumberCase()" ng-model="numberCases" placeholder="Enter number of cases">
+                </div>
+                <div class="states">
+                    <h4>Etats</h4>
+                    <div ng-repeat="case in cases">
+                        <input class="case-{{$index}}" type="text" placeholder="Enter x,o or ." />
+                    </div>
+                </div>
+
+                <button  class="btn btn-primary" ng-click="callApi()">Envoyer</button>
+                <span class="error">{{error[1]}}</span>
+            </div>
+        </div>
+        <div id="column-right">
+            <h3>Resultat</h3>
+            <ul ng-repeat="x in data">
+                <ul>
+                    <span ng-repeat="y in x track by $index">
+                        {{y}}
+                    </span>
+                </ul>
+            </ul>
         </div>
     </div>
-
-    <button  class="btn btn-primary" ng-click="callApi()">Envoyer</button>
-
-
-
-
-</div>
-
 </body>
 </html>

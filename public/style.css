@@ -1,0 +1,23 @@
+#wrapper {
+    display: flex;
+
+}
+
+#column-left {
+    flex: 0 0 30%;
+    border-right: 1px solid black;
+}
+
+#column-right {
+    flex: 1;
+}
+
+#column-right h3{
+    text-align: center;
+    flex: 1;
+}
+
+#column-right ul{
+    text-align: center;
+    padding: 0;
+}

@@ -30,6 +30,7 @@ class PermutationController {
         if ($this->caseEntityCollection->getCountError() > 0) {
             $this->responseApi->response(404, $this->caseEntityCollection->getErrors());
         }
+
         $arrayCases = $this->toolBoxPermutation->getPermutations($this->caseEntityCollection->getTabStates(), $this->redisClientConnection);
         $this->responseApi->response(200, $arrayCases);
     }

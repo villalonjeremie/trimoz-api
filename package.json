@@ -16,7 +16,5 @@
     "url": "https://github.com/villalonjeremie/trimoz-api/issues"
   },
   "homepage": "https://github.com/villalonjeremie/trimoz-api#readme",
-  "dependencies": {
-    "angular": "^1.7.8"
-  }
+  "dependencies": {}
 }
