@@ -4,21 +4,23 @@
 <script src="index.js"></script>
 <body ng-app="multiCases" ng-controller="multiCasesCtrl">
 
-<div >
-    <span>Demande</span>
-    <input ng-keydown="changeNumberCase()" ng-model="numberCase">
-    <section ng-repeat="user in users">
-        <!--<span class="serial-number">{{ $index + 1 }}.</span>-->
-        <!--<input ng-model="user.firstName" class="users-container-inputs-text" type="text" placeholder="First Name" />-->
-        <!--<input ng-model="user.lastName" class="users-container-inputs-text" type="text" placeholder="Last Name" />-->
-        <!--<input ng-model="user.address" class="users-container-inputs-text" type="text" placeholder="Address" />-->
-        <!--<a class="users-container-inputs-button" ng-click="removeUser(user)">X</a>-->
-    </section>
+<div class="demande" >
+    <h3>Demande</h3>
+    <div class="cases">
+        <h4>Cases</h4>
+        <input ng-change="changeNumberCase()" ng-model="numberCases" placeholder="Enter number of cases">
+    </div>
+    <div class="states">
+        <h4>Etats</h4>
+        <div ng-repeat="case in cases">
+            <input class="case-{{$index}}" type="text" placeholder="Enter x,o or ." />
+        </div>
+    </div>
+
+    <button  class="btn btn-primary" ng-click="callApi()">Envoyer</button>
 
 
-    <form>
 
-    </form>
 
 </div>
 
