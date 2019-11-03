@@ -11,7 +11,7 @@ Clone this project using the following commands:
 ```
 mkdir trimoz && cd trimoz
 git init
-git clone https://github.com/villalonjeremie/trimoz.git
+git clone https://github.com/villalonjeremie/trimoz-api.git
 ```
 
 Install Redis-Server on MacOs with brew:
@@ -51,7 +51,7 @@ Test API Call
 php vendor/bin/phpunit src/Permutation/Tests/PermutationControllerTest.php
 ```
 
-Loading page on browser in local
+Loading page on browser in local after launch web server
 ```
 http://localhost/public/index.html
 ```
