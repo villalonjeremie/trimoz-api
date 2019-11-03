@@ -10,7 +10,8 @@ class ToolBoxPermutation {
         $redis = $redisClientConnection->getConnection();
         $key = json_encode($arrayCases);
 
-        if ($redis->exists($key)) {
+        if ($redisClientConnection->getConnection()->isConnected()
+            && $redis->exists($key)) {
             return json_decode($redis->get($key));
         } else {
             $resultPermutation = $this->algoPermutation($arrayCases);
